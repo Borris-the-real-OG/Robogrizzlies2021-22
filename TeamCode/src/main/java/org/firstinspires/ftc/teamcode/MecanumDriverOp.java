@@ -51,9 +51,9 @@ import com.qualcomm.robotcore.util.Range;
  * Remove or comment out the @Disabled line to add this opmode to the Driver Station OpMode list
  */
 
-@TeleOp(name="Basic: Linear OpMode", group="Linear Opmode")
-@Disabled
-public class MecanumTest extends LinearOpMode {
+@TeleOp(name="Mecanum Opmode", group="Linear Opmode")
+//@Disabled
+public class MecanumDriverOp extends LinearOpMode {
 
     // Declare OpMode members.
     private ElapsedTime runtime = new ElapsedTime();
@@ -71,6 +71,14 @@ public class MecanumTest extends LinearOpMode {
 
         // run until the end of the match (driver presses STOP)
         while (opModeIsActive()) {
+
+            if (gamepad1.dpad_left) {
+                robot.testServo.setPosition(0);
+            }else if(gamepad1.dpad_down){
+                robot.testServo.setPosition(0.5);
+            }else if(gamepad1.dpad_right){
+                robot.testServo.setPosition(1);
+            }
 
             // Defining power variables
             double vertical = -gamepad1.left_stick_y;
